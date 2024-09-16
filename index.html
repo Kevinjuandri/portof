@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Kevin Juandri</title>
+    <style>
+        /* Reset dasar */
+        body, h1, h2, h3, p, form, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f0f4f8;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #004d40; /* Hijau tua */
+            color: #fff;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-picture {
+            border-radius: 50%;
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            animation: zoomIn 2s ease-in-out;
+            border: 4px solid #fff;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .intro {
+            max-width: 600px;
+        }
+
+        .intro h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeInUp 2s ease-out forwards;
+        }
+
+        .intro h1 .name {
+            color: #ff7043; /* Oranye cerah */
+            transition: color 0.3s ease;
+        }
+
+        .intro h1 .name:hover {
+            color: #d84315; /* Oranye lebih gelap */
+        }
+
+        .intro p {
+            font-size: 1.2em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 2.5s ease-out 0.5s forwards;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+            font-size: 2em;
+            color: #004d40; /* Hijau tua */
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInUp 2s ease-out forwards;
+        }
+
+        #about, #skills, #projects, #contact, #testimonials, #certificates, #blog, #gallery, #journey {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #skills {
+            background: #e0f7fa; /* Biru pucat */
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .skill {
+            background: #fff;
+            border: 2px solid #004d40; /* Hijau tua */
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 200px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 2s ease-out forwards;
+        }
+
+        .skill:hover {
+            background: #004d40; /* Hijau tua */
+            color: #fff;
+            border-color: #00251a; /* Hijau lebih tua */
+            transform: scale(1.05);
+        }
+
+        #projects .project, #certificates .certificate, #blog .blog-post, #gallery img, #testimonials .testimonial {
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 2s ease-out forwards;
+        }
+
+        #contact {
+            background: #fff;
+        }
+
+        form {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        form button {
+            background: #004d40; /* Hijau tua */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #00251a; /* Hijau lebih gelap */
+        }
+
+        footer {
+            background: #00251a; /* Hijau lebih gelap */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+        }
+
+        /* Bagian sertifikat */
+        #certificates {
+            background: #f7f7f7; /* Abu-abu terang */
+        }
+
+        .certificate {
+            display: inline-block;
+            margin: 10px;
+            width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .certificate img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Blog styling */
+        #blog .blog-post {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        #blog .blog-post h3 {
+            margin-bottom: 5px;
+            font-size: 1.5em;
+        }
+
+        #blog .blog-post a {
+            color: #004d40;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        #blog .blog-post a:hover {
+            color: #00251a;
+        }
+
+        /* Gallery styling */
+        .gallery {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Animasi teks */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Animasi section */
+        .section-animate {
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="profile-picture">
+            <img src="kevin1.jpeg" alt="Kevin Juandri">
+        </div>
+        <div class="intro">
+            <h1 class="animated-text">Halo, saya <span class="name">Kevin Juandri</span>!</h1>
+            <p>Saya seorang pelajar SMK kelas 11 yang antusias dalam bidang teknologi dan desain web.</p>
+        </div>
+    </header>
+    
+    <section id="about" class="section-animate">
+        <h2>Tentang Saya</h2>
+        <p>Saya sedang menempuh pendidikan di SMK dan memiliki minat besar dalam teknologi dan desain web. Selama masa belajar, saya telah mengerjakan berbagai proyek yang membantu saya mengembangkan keterampilan dan pengetahuan di bidang ini.</p>
+    </section>
+    
+    <section id="skills" class="section-animate">
+        <h2>Keterampilan</h2>
+        <div class="skills-container">
+            <div class="skill">
+                <h3>HTML</h3>
+                <p>Saya memiliki pemahaman yang baik tentang HTML dan mampu membangun struktur halaman web yang solid dan semantik.</p>
+            </div>
+            <div class="skill">
+                <h3>CSS</h3>
+                <p>Dengan keterampilan CSS, saya dapat membuat desain web yang responsif dan menarik, dengan perhatian pada detail dan estetika.</p>
+            </div>
+            <div class="skill">
+                <h3>JavaScript</h3>
+                <p>Saya berpengalaman dalam menulis skrip JavaScript untuk menambahkan interaktivitas dan fungsionalitas dinamis ke situs web.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="projects" class="section-animate">
+        <h2>Proyek</h2>
+        <div class="project">
+            <h3>Website Portofolio</h3>
+            <p>Saya membangun website portofolio ini untuk menampilkan keterampilan dan proyek saya. Ini menggunakan HTML, CSS, dan JavaScript.</p>
+        </div>
+        <div class="project">
+            <h3>Aplikasi Kalkulator</h3>
+            <p>Proyek ini adalah aplikasi kalkulator sederhana yang dikembangkan dengan JavaScript untuk mempraktikkan logika pemrograman dan antarmuka pengguna.</p>
+        </div>
+    </section>
+    
+    <section id="certificates" class="section-animate">
+        <h2>Sertifikat</h2>
+        <div class="certificate">
+            <img src="sertiv1.png" alt="Sertifikat 1">
+        </div>
+        <div class="certificate">
+            <img src="sertiv 2.png" alt="Sertifikat 2">
+        </div>
+        <div class="certificate">
+            <img src="sertiv 3.png" alt="Sertifikat 2">
+        </div>
+    </section>
+
+    <section id="journey" class="section-animate">
+        <h2>My Journey</h2>
+        <p>Sejak memulai pendidikan di SMK, saya telah menghadapi berbagai tantangan dan pencapaian dalam bidang teknologi. Dari belajar HTML dasar hingga mengembangkan aplikasi web interaktif, setiap langkah telah membantu saya tumbuh dan berkembang dalam dunia teknologi.</p>
+        <ul>
+            <li><strong>2022:</strong> Mengembangkan situs web pertama dengan HTML dan CSS.</li>
+            <li><strong>2023:</strong> Memperoleh sertifikat dalam pengembangan front-end </li>
+            <li><strong>2024:</strong> Mengerjakan proyek aplikasi kalkulator konversi mata uang.</li>
+        </ul>
+    </section>
+    
+    <section id="contact" class="section-animate">
+        <h2>Kontak</h2>
+        <form action="#">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Kirim Pesan</button>
+        </form>
+    </section>
+    
+    <footer>
+        <p>© 2024 Kevin Juandri. Semua hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>
