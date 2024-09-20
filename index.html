@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Kevin Juandri</title>
+    <style>
+        body, h1, h2, h3, p, form, input, textarea, button {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #121212;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        header, section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 20px;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(100%);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        header {
+            background: #1b1b1b;
+            color: #fff;
+        }
+
+        .next-button {
+            margin-top: 20px;
+            background: #ff7043;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .next-button:hover {
+            background: #d84315;
+        }
+
+        .profile-image {
+            width: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        h2, h3 {
+            border-bottom: 2px solid #ff7043;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content-box {
+            border: 1px solid #ff7043;
+            padding: 15px;
+            border-radius: 5px;
+            background: #1c1c1c;
+            margin-bottom: 20px;
+            width: 80%;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .content-box:hover {
+            background: #292929;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideIn {
+            from { transform: translate(100%, 100%); opacity: 0; }
+            to { transform: translate(0, 0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translate(0, 0); opacity: 1; }
+            to { transform: translate(-100%, -100%); opacity: 0; }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translate(-100%, 0); opacity: 0; }
+            to { transform: translate(0, 0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translate(100%, 0); opacity: 0; }
+            to { transform: translate(0, 0); opacity: 1; }
+        }
+
+        @keyframes colorChange {
+            0% { color: #ff7043; }
+            25% { color: #ffca28; }
+            50% { color: #64ffda; }
+            75% { color: #29b6f6; }
+            100% { color: #ff7043; }
+        }
+
+        .name {
+            animation: colorChange 5s infinite;
+        }
+
+        form div {
+            margin-bottom: 15px;
+            text-align: left;
+            width: 100%;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: calc(100% - 10px);
+            padding: 8px;
+            border: 1px solid #ff7043;
+            border-radius: 5px;
+            background: #1c1c1c;
+            color: #fff;
+            transition: border 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #d84315;
+            outline: none;
+        }
+
+        button[type="submit"] {
+            background: #ff7043;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background: #d84315;
+        }
+    </style>
+</head>
+<body>
+    <header class="visible">
+        <img src="kevin1.jpeg" alt="Foto Kevin Juandri" class="profile-image">
+        <h1>Halo, saya <span class="name">Kevin Juandri</span>!</h1>
+        <div class="content-box">
+            <p>Saya seorang pelajar SMK kelas 11 yang antusias dalam bidang teknologi dan desain web. Saya selalu berusaha untuk mengembangkan keterampilan saya dan berpartisipasi dalam berbagai proyek.</p>
+        </div>
+        <button class="next-button" onclick="scrollToSection('about')">Selanjutnya</button>
+    </header>
+
+    <section id="about" class="hide">
+        <h2>Tentang Saya</h2>
+        <div class="content-box">
+            <p>Saya sedang menempuh pendidikan di SMK dan memiliki minat besar dalam teknologi dan desain web. Dalam perjalanan belajar saya, saya aktif dalam mengikuti berbagai kursus dan proyek, berusaha menerapkan apa yang saya pelajari ke dalam praktik nyata.</p>
+        </div>
+        <button class="next-button" onclick="scrollToSection('skills')">Selanjutnya</button>
+    </section>
+
+    <section id="skills" class="hide">
+        <h2>Keterampilan</h2>
+        <div class="content-box">
+            <h3>HTML</h3>
+            <p>Saya memiliki pemahaman yang baik tentang HTML dan mampu membangun struktur halaman web yang solid dan semantik.</p>
+        </div>
+        <div class="content-box">
+            <h3>CSS</h3>
+            <p>Dengan keterampilan CSS, saya dapat membuat desain web yang responsif dan menarik, memperhatikan detail dan estetika.</p>
+        </div>
+        <div class="content-box">
+            <h3>JavaScript</h3>
+            <p>Saya berpengalaman dalam menulis skrip JavaScript untuk menambahkan interaktivitas dan fungsionalitas dinamis ke situs web.</p>
+        </div>
+        <button class="next-button" onclick="scrollToSection('projects')">Selanjutnya</button>
+    </section>
+
+    <section id="projects" class="hide">
+        <h2>Proyek</h2>
+        <div class="content-box">
+            <h3>Website Portofolio</h3>
+            <p>Saya membangun website portofolio ini untuk menampilkan keterampilan dan proyek saya.</p>
+        </div>
+        <div class="content-box">
+            <h3>Aplikasi Kalkulator</h3>
+            <p>Proyek ini adalah aplikasi kalkulator sederhana yang dikembangkan dengan JavaScript untuk memahami logika pemrograman.</p>
+        </div>
+        <div class="content-box">
+            <h3>Web E-Commerce</h3>
+            <p>Saya mengembangkan proyek web e-commerce yang memungkinkan pengguna untuk menjelajahi produk dan melakukan pembelian.</p>
+        </div>
+        <button class="next-button" onclick="scrollToSection('journey')">Selanjutnya</button>
+    </section>
+
+    <section id="journey" class="hide">
+        <h2>My Journey</h2>
+        <div class="content-box">
+            <p>Sejak memulai pendidikan di SMK, saya telah menghadapi berbagai tantangan dan pencapaian dalam bidang teknologi. Dari belajar HTML dasar hingga mengembangkan aplikasi web interaktif, setiap langkah membantu saya tumbuh dan berkembang.</p>
+        </div>
+        <button class="next-button" onclick="scrollToSection('contact')">Selanjutnya</button>
+    </section>
+
+    <section id="contact" class="hide">
+        <h2>Kontak</h2>
+        <div class="content-box">
+            <form action="#">
+                <div>
+                    <label for="name">Nama:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div>
+                    <label for="message">Pesan:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        let currentSectionIndex = 0;
+        const sections = document.querySelectorAll('header, section');
+
+        function scrollToSection(sectionId) {
+            const targetIndex = Array.from(sections).findIndex(section => section.id === sectionId);
+            
+            if (targetIndex === -1 || targetIndex === currentSectionIndex) return;
+
+            const currentSection = sections[currentSectionIndex];
+            const targetSection = sections[targetIndex];
+
+            // Animasi slide out
+            currentSection.style.animation = 'slideOut 0.5s forwards';
+            setTimeout(() => {
+                currentSection.classList.add('hide'); // Sembunyikan section saat ini
+                targetSection.classList.remove('hide'); // Tampilkan section target
+                targetSection.style.animation = targetIndex > currentSectionIndex ? 'slideInRight 0.5s forwards' : 'slideInLeft 0.5s forwards'; // Tambahkan animasi slide in
+                targetSection.classList.add('visible'); // Tampilkan section
+            }, 500);
+
+            currentSectionIndex = targetIndex;
+        }
+
+        // Inisialisasi tampilan
+        sections.forEach((section, index) => {
+            if (index === 0) {
+                section.classList.add('visible');
+            } else {
+                section.classList.add('hide'); // Sembunyikan semua section kecuali yang pertama
+            }
+        });
+    </script>
+</body>
+</html>
